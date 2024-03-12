@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <form>
+        <div>
+            <label>Username</label>
+            <input type="text" id="usr">
+        </div>
+        <div>
+            <label>School</label>
+            <input type="text" id="school">
+        </div>
+        <div>
+            <label>Birthday</label>
+            <input type="date" id="date">
+        </div>
+        <button type="button" onclick="handelSubmit();">Submit</button>
+    </form>
+</body>
+<script>
+    function handelSubmit() {
+        let username = document.getElementById("usr").value
+        let school = document.getElementById("school").value
+        let birthday = document.getElementById("date").value
+        let data_body = JSON.stringify({"username": username, "school": school, "birthday": birthday})
+
+        $.ajax(
+            {
+                type: "POST",
+                url: "/api/create",
+                data: data_body,
+                contentType: 'application/json; charset=utf-8',
+                dataType: "json",
+                success: function(data) {
+                    console.log("Success")
+                },
+                error: function(data) {
+                    console.log("Error")
+                }
+            }
+        )
+    }
+</script>
+
+</html>
