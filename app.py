@@ -26,4 +26,4 @@ def createUser():
         return jsonify({"success": False})
 
 if __name__ == "__main__":
-    app.run(port=env.get("PORT"), debug=True)
+    app.run(host="0.0.0.0",port=env.get("PORT"), debug=True)
